@@ -62,7 +62,7 @@ sudo apt install docker-ce
 sudo apt install docker-compose
 ```
 
-## Installation and configuration of account _mssql_
+## Installation and configuration
 #### Add group _docker_ to user _mssql_.
 
 ```
