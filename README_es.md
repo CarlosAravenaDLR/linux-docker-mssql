@@ -4,6 +4,12 @@
 
 #### Instalar ubuntu 16.04 de forma estandar.
 #### crear usuario _mssql_.
+Después de la instalación se debe, crear grupo, usuario y cambio de contraseña al usuario _mssql_.
+```
+sudo groupadd mssql
+sudo useradd -d /home/mssql -m -s /bin/bash -g mssql -G mssql,adm,sudo mssql
+sudo passwd mssql
+```
 
 ## Instalación de Docker
 #### Remover vesiones antiguas.
@@ -55,8 +61,8 @@ sudo apt install docker-ce
 sudo apt install docker-compose
 ```
 
-## Instalación y configuración de mssql
-#### Agregar grupo _docker_ a usuario de _mssql_. Después se debe ingresar o reingresar al sistema con usuario _mssql_.
+## Instalación y configuración
+#### Agregar grupo _docker_ a usuario de _mssql_. Después se debe iniciar sesión o volver a iniciar sesión con usuario _mssql_.
 
 ```
 sudo usermod -aG docker mssql
@@ -68,46 +74,24 @@ sudo usermod -aG docker mssql
 docker volume create --name=mssql-db
 ```
 
-#### Crear archivo _docker-compose.yml_.
-
-```
-
-version: '2'
-
-services:
-
-  mssql:
-    image: microsoft/mssql-server-linux:latest
-    container_name: mssql
-    restart: always
-    networks:
-      - mssql-tier
-    ports:
-      - 1433:1433
-    expose:
-      - 1433
-    volumes:
-      - mssql-db:/var/opt/mssql
-    environment:
-      - ACCEPT_EULA=Y
-      - SA_PASSWORD=P4ssw0rd+
-      - MSSQL_PID=Developer
-
-volumes:
-  mssql-db:
-    external: true
-
-networks:
-  mssql-tier:
-    driver: bridge
-```
-
-#### Dejar como servicio a docker.
+#### Dejar Doker como servicio.
 
 ```
 sudo systemctl enable docker
 sudo systemctl start docker
 ```
+
+
+#### Clonar https://github.com/CarlosAravenaDLR/linux-docker-mssql.git.
+```
+git clone https://github.com/CarlosAravenaDLR/linux-docker-mssql.git
+```
+
+Entrar a linux-docker-mssql.
+```
+cd linux-docker-mssql
+```
+
 
 #### Comprobar que archivo _docker-compose.yml_, está editado de forma correcta. Una vez esté corriendo el servicio, se puede probar con _"SQL Operation Studio"_.
 
