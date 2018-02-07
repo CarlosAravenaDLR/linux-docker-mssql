@@ -1,134 +1,119 @@
 # SQL Server in Docker a new defaince Linux
+Tested on Ubuntu 16.04. 
 
-## Instalación de Ubuntu
+## Ubuntu install
 
-#### Instalar ubuntu 16.04 de forma estandar.
-#### crear usuario _mssql_.
+#### Standard installation of Ubuntu 16.04.
+#### Create group and user _mssql_.
+Create group, user and change password.
+```
+sudo groupadd mssql
+sudo useradd -d /home/mssql -m -s /bin/bash -g mssql -G mssql,adm,sudo mssql
+sudo passwd mssql
+```
 
-## Instalación de Docker
-#### Remover vesiones antiguas.
+## Docker install
+#### Remove older version.
  
 ```
 sudo apt remove docker docker-engine docker.io
 ```
 
-#### instalar dependencias.
+#### Dependencies install.
 
 ```
-sudo apt install apt-transport-https ca-certificates curl software-properties-common
+sudo apt install apt-transport-https ca-certificates curl software-properties-common git
 ```
 
-#### instalar repositorio.
-  - Agregar llave
+#### Add Repository
+  - Add key
 
 ```
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 ```
 
-  - Agregar fingerprint.
+  - Add fingerprint.
 
 ```
 sudo apt-key fingerprint 0EBFCD88
 ```
 
-  - Agregar Repositorio.
+  - Add Repository.
 
 ```
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 ```
 
-  - Actualizar repositorio.
+  - Update Repository.
 
 ```
 sudo apt update
 ```
 
-#### Instalar _docker-ce_.
+#### Intatall _docker-ce_.
 
 ```
 sudo apt install docker-ce
 ```
 
-#### Instalar _docker-compose_.
+#### Install _docker-compose_.
 
 ```
 sudo apt install docker-compose
 ```
 
-## Instalación y configuración de mssql
-#### Agregar grupo _docker_ a usuario de _mssql_. Después se debe ingresar o reingresar al sistema con usuario _mssql_.
+## Installation and configuration of account _mssql_
+#### Add group _docker_ to user _mssql_.
 
 ```
 sudo usermod -aG docker mssql
 ```
+login or re-login with _mssql_.
 
-#### Con el usuario _mssql_, crear volumen _mssql-db_, para los respaldos de la base de datos. La ruta por omisión es _"/var/lib/docker/volumes/mssql-db"_.
+#### Create volume _mssql-db_.
 
 ```
 docker volume create --name=mssql-db
 ```
+The backups remain in the default path _"/var/lib/docker/volumes/mssql-db"_.
 
-#### Crear archivo _docker-compose.yml_.
-
-```
-
-version: '2'
-
-services:
-
-  mssql:
-    image: microsoft/mssql-server-linux:latest
-    container_name: mssql
-    restart: always
-    networks:
-      - mssql-tier
-    ports:
-      - 1433:1433
-    expose:
-      - 1433
-    volumes:
-      - mssql-db:/var/opt/mssql
-    environment:
-      - ACCEPT_EULA=Y
-      - SA_PASSWORD=P4ssw0rd+
-      - MSSQL_PID=Developer
-
-volumes:
-  mssql-db:
-    external: true
-
-networks:
-  mssql-tier:
-    driver: bridge
-```
-
-#### Dejar como servicio a docker.
+#### Activate docker as a service.
 
 ```
 sudo systemctl enable docker
 sudo systemctl start docker
 ```
 
-#### Comprobar que archivo _docker-compose.yml_, está editado de forma correcta. Una vez esté corriendo el servicio, se puede probar con _"SQL Operation Studio"_.
+#### Clone https://github.com/CarlosAravenaDLR/linux-docker-mssql.git.
+```
+git clone https://github.com/CarlosAravenaDLR/linux-docker-mssql.git
+```
+Enter to linux-docker-mssql.
+```
+cd linux-docker-mssql
+```
 
+#### Run docker-compose.
+
+For seeing does SQL Server work, try this and check with your SQL Operation Studio.
 ```
 docker-compose up
 ```
 
-#### Detener ejecución del contenedor _mssql_, para ejecutar en segundo plano.
+#### Stop _mssql_ container and start "SQL Server" in background.
 
 ```
-docker-compose stop
+docker-compose stop 
 docker-compose up -d
 ```
 
-#### Verificar que está corriendo el contenedor _mssql_.
+#### Check that the _mssql_ container is running.
 
 ```
 docker ps
 ```
 
-#### Vereficar que no está corriendo el contenedor _mssql_.
+#### Check that the _mysql container is stopped.
 
 ```
 docker ps -a
