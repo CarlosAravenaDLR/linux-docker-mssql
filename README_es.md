@@ -21,7 +21,7 @@ sudo apt remove docker docker-engine docker.io
 #### instalar dependencias.
 
 ```
-sudo apt install apt-transport-https ca-certificates curl software-properties-common
+sudo apt install apt-transport-https ca-certificates curl software-properties-common git
 ```
 
 #### instalar repositorio.
