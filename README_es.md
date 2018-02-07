@@ -1,5 +1,5 @@
 # SQL Server in Docker a new defaince Linux
-
+Probado en ubuntu 16.04
 ## Instalación de Ubuntu
 
 #### Instalar ubuntu 16.04 de forma estandar.
