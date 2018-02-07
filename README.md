@@ -84,9 +84,9 @@ sudo systemctl enable docker
 sudo systemctl start docker
 ```
 
-#### Clone https://github.com/CarlosAravenaDLR/linux-docker-mssql.git.
+#### Clone https://github.com/cfranciscoj/linux-docker-mssql.git.
 ```
-git clone https://github.com/CarlosAravenaDLR/linux-docker-mssql.git
+git clone https://github.com/cfranciscoj/linux-docker-mssql.git
 ```
 Enter to linux-docker-mssql.
 ```
