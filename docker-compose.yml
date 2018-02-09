@@ -5,6 +5,7 @@ services:
   mssql:
     image: microsoft/mssql-server-linux:latest
     container_name: mssql
+    hostname: mssqlcont
     restart: always
     networks:
       - mssql-tier
