@@ -117,7 +117,7 @@ docker-compose up -d
 docker ps
 ```
 
-#### Check that the _mysql container is stopped.
+#### Check that the _mssql_ container is stopped.
 
 ```
 docker ps -a
