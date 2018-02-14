@@ -123,3 +123,38 @@ docker ps
 docker ps -a
 ```
 
+#### Stop _mssql_ container.
+
+```
+docker stop mssql
+```
+
+#### Start _mssql_ container.
+
+```
+docker start mssql
+```
+
+## Uninstall.
+#### Stop _mssql_ container.
+
+```
+docker stop mssql
+```
+#### Remove _mssql_ container.
+
+```
+docker rm mssql
+```
+#### Remove _vol-mssql_ volume.
+
+```
+docker volume rm vol-mssql
+```
+
+#### Remove _vol-mssql_ folder.
+
+```
+sudo rm -Rf /home/mssql/vol-mssql
+```
+
