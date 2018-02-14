@@ -70,12 +70,16 @@ sudo usermod -aG docker mssql
 ```
 login or re-login with _mssql_.
 
-#### Create volume _mssql-db_.
-
+#### Create volume _vol-mssql_.
 ```
-docker volume create --name=mssql-db
+mkdir -p /home/mssql/vol-mssql/
+docker volume create --opt type=none --opt device=/home/mssql/vol-mssql --opt o=bind --name=vol-mssql
 ```
-The backups remain in the default path _"/var/lib/docker/volumes/mssql-db"_.
+or
+```
+docker volume create --name=vol-mssql
+```
+The default path is _"/var/lib/docker/volumes/vol-mssql"_.
 
 #### Activate docker as a service.
 
