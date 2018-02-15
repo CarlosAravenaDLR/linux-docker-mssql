@@ -4,8 +4,8 @@ services:
 
   mssql:
     image: microsoft/mssql-server-linux:latest
-    container_name: mssql
-    hostname: mssqlcont
+    container_name: mssqlcont
+    hostname: mssqlhost
     restart: always
     networks:
       - mssql-tier
@@ -14,14 +14,14 @@ services:
     expose:
       - 1433
     volumes:
-      - vol-mssql:/var/opt/mssql
+      - mssql-vol:/var/opt/mssql
     environment:
       - ACCEPT_EULA=Y
       - SA_PASSWORD=P4ssw0rd+
       - MSSQL_PID=Developer
 
 volumes:
-  vol-mssql:
+  mssql-vol:
     external: true
 
 networks:
