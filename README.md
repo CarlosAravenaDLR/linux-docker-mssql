@@ -72,14 +72,14 @@ login or re-login with _mssql_.
 
 #### Create volume _vol-mssql_.
 ```
-mkdir -p /home/mssql/vol-mssql/
-docker volume create --opt type=none --opt device=/home/mssql/vol-mssql --opt o=bind --name=vol-mssql
+mkdir -p /home/mssql/mssql-vol/
+docker volume create --opt type=none --opt device=/home/mssql/mssql-vol --opt o=bind --name=mssql-vol
 ```
 or
 ```
-docker volume create --name=vol-mssql
+docker volume create --name=mssql-vol
 ```
-The default path is _"/var/lib/docker/volumes/vol-mssql"_.
+The default path is _"/var/lib/docker/volumes/mssql-vol"_.
 
 #### Activate docker as a service.
 
@@ -104,47 +104,47 @@ For seeing does SQL Server work, try this and check with your SQL Operation Stud
 docker-compose up
 ```
 
-#### Stop _mssql_ container and start "SQL Server" in background.
+#### Stop _mssqlcont_ container and start "SQL Server" in background.
 
 ```
 docker-compose stop 
 docker-compose up -d
 ```
 
-#### Check that the _mssql_ container is running.
+#### Check that the _mssqlcont_ container is running.
 
 ```
 docker ps
 ```
 
-#### Check that the _mssql_ container is stopped.
+#### Check that the _mssqlcont_ container is stopped.
 
 ```
 docker ps -a
 ```
 
-#### Stop _mssql_ container.
+#### Stop _mssqlcont_ container.
 
 ```
-docker stop mssql
+docker stop mssqlcont
 ```
 
-#### Start _mssql_ container.
+#### Start _mssqlcont_ container.
 
 ```
-docker start mssql
+docker start mssqlcont
 ```
 
 ## Uninstall.
-#### Stop _mssql_ container.
+#### Stop _mssqlcont_ container.
 
 ```
-docker stop mssql
+docker stop mssqlcont
 ```
-#### Remove _mssql_ container.
+#### Remove _mssqlcont_ container.
 
 ```
-docker rm mssql
+docker rm mssqlcont
 ```
 #### Remove _vol-mssql_ volume.
 
