@@ -77,7 +77,6 @@ docker volume create --opt type=none --opt device=/home/mssql/mssql-vol --opt o=
 ```
 or
 ```
-mkdir -p /home/mssql/mssql-vol/
 docker volume create --name=mssql-vol
 ```
 The default path is _"/var/lib/docker/volumes/mssql-vol"_.
