@@ -149,12 +149,12 @@ docker rm mssqlcont
 #### Remove _vol-mssql_ volume.
 
 ```
-docker volume rm vol-mssql
+docker volume rm mssql-vol
 ```
 
-#### Remove _vol-mssql_ folder.
+#### Remove _mssql-vol_ folder.
 
 ```
-sudo rm -Rf /home/mssql/vol-mssql
+sudo rm -Rf /home/mssql/mssql-vol
 ```
 
